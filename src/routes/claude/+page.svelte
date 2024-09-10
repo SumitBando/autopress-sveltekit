@@ -57,6 +57,27 @@
     if (!score) return 'Halved';
     return score.join('');
   }
+
+  // Function to calculate final result
+  function calculateFinalResult(finalScore) {
+    if (!finalScore) return { winner: 'Tie', difference: 0 };
+
+    let aMatches = 0;
+    let bMatches = 0;
+
+    for (let i = 0; i < finalScore.length; i++) {
+      if (i % 2 === 0) {
+        aMatches += finalScore[i];
+      } else {
+        bMatches += finalScore[i];
+      }
+    }
+
+    const difference = Math.abs(aMatches - bMatches);
+    const winner = aMatches > bMatches ? 'A' : (bMatches > aMatches ? 'B' : 'Tie');
+
+    return { winner, difference };
+  }
 </script>
 
 <main>
@@ -64,7 +85,18 @@
 
   {#if $gameState.gameOver}
     <h2>Game Over</h2>
-    <p>Final Score: {formatScore($gameState.scores[$gameState.scores.length - 1].score)}</p>
+    {#if $gameState.scores.length > 0}
+      {@const finalScore = $gameState.scores[$gameState.scores.length - 1].score}
+      {@const { winner, difference } = calculateFinalResult(finalScore)}
+      <p>Final Score: {formatScore(finalScore)}</p>
+      {#if winner === 'Tie'}
+        <p>The game ended in a tie!</p>
+      {:else}
+        <p>Team {winner} won by {difference} {difference === 1 ? 'match' : 'matches'}!</p>
+      {/if}
+    {:else}
+      <p>No scores recorded.</p>
+    {/if}
   {:else}
     <h2>Hole {$gameState.currentHole}</h2>
     <div>
