@@ -1,0 +1,38 @@
+rules of bahama auto press golf scoring are like this:
+Score is a sequence of digits, where each digit represents 1 match. The outcome of each hole affects all the matches.
+When one playing team wins a hole, three matches are opened, and  scoring starts with 1 1 1
+Whoever wins the 1st match, the 1st & 3rd 1(match) is in his favor and the middle 1 is in the loser’s favor, which makes the winning team NET 1 match up
+Let's say team A wins so i'll just write A/B next to the matches in favor of A/B... 1a 1b 1a
+
+The basic rules are the matches will be in either teams favor if it's 1 or more and neutral/in no one's favor if its 0 - 
+
+Whoever wins the next hole you add 1 to the matches in favor of that team and subtract 1 from the matches in favor of the losing team.
+If team B wins the next hole, the score changes from 1a 1b 1a to 0a 2b 0a
+However, if team A wins the next hole also, the score changes from 1a 1b 1a to 2a 0 2a …
+
+
+2nd fixed rule(auto press) - whenever the last (right most)  match becomes 2, you have to open another match automatically
+So the above score (2a 0 2a) actually becomes 2a 0 2a 0
+
+If a match is at 0 then it is neutral (in nobody's favor) so whoever wins the next hole, it will become 1 and go in the winner's favour.
+To demonstrate, lets say team B wins 3rd hole. Now the score will change from 2a 0 2a 0 to 1a 1b 1a 1b (+1 to 0's in their favor & -1 from matches in losing opponents favor) so now 2nd and 4th match comes into Bs favour (making the net score all square) 1a 1b 1a 1b (or 1 1 1 1)
+
+If A wins next match score becomes 2a 0 2a 0
+If instead B wins, score becomes 0 2b 0 2b 0 (another match opens as last match is 2)
+
+Examples:
+Hole 1 A wins, score is 1a 1b 1a
+Hole 2: if A wins 2a 0 2a 0, if B wins 0 2b 0
+Hole 3: Halved, no change in score
+Hole 4: If score was 2a 0 2a 0, and A wins again score becomes 3a 1a 3a 1a, if B wins score becomes 1a 1b 1a 1b
+If score was 0 2b 0 and if A wins 1a 1b 1a,  if B wins 1b 3b 1b
+Hole 5: If score was 3a 1a 3a 1a and A wins again 4a 2a 4a 2a 0, if B wins 2a 0 2a 0
+If score was 1b 3b 1b and if A wins 0 2b 0, if B wins 2b 4b 2b 0 
+
+Write a sveltekit app to encode this.
+The app should start with a single row of 3 buttons for the first hole:
+<A Wins> <Halved> <B Wins>
+After one of the buttons is pressed, it should show the score, and open a new set of 3 buttons for the next hole.
+The app should display the outcome of previous holes played and scored in one line for each hole, showing what was pressed for each previous hole, and the resulting score.
+After buttons are clicked for all 18 holes, no new buttons should be opened, but the score should be summarized
+When showing game over,  show who own by how many matches

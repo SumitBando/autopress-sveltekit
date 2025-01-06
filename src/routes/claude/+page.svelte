@@ -16,17 +16,33 @@
 
     let newScore = [...prevScore];
     
+    // First, assign any open (0) matches to the winner
+    for (let i = 0; i < newScore.length; i++) {
+      if (newScore[i] === 0) {
+        if (winner === 'A' && i % 2 === 0) newScore[i] = 1;
+        if (winner === 'B' && i % 2 === 1) newScore[i] = 1;
+      }
+    }
+    
+    // Then, update the scores
     for (let i = 0; i < newScore.length; i++) {
       if (winner === 'A') {
-        newScore[i] += i % 2 === 0 ? 1 : -1;
+        if (i % 2 === 0) {
+          newScore[i]++;
+        } else if (newScore[i] > 0) {
+          newScore[i]--;
+        }
       } else {
-        newScore[i] += i % 2 === 1 ? 1 : -1;
+        if (i % 2 === 1) {
+          newScore[i]++;
+        } else if (newScore[i] > 0) {
+          newScore[i]--;
+        }
       }
-      newScore[i] = Math.max(0, newScore[i]);
     }
 
     // Auto press rule
-    if (newScore[newScore.length - 1] === 2) {
+    if (newScore[newScore.length - 1] >= 2) {
       newScore.push(0);
     }
 
@@ -55,7 +71,10 @@
   // Function to format score for display
   function formatScore(score) {
     if (!score) return 'Halved';
-    return score.join('');
+    return score.map((value, index) => 
+      value === 0 ? '0' : 
+      (index % 2 === 0 ? value + 'a' : value + 'b')
+    ).join('');
   }
 
   // Function to calculate final result
