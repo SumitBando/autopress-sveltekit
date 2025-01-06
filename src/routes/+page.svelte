@@ -164,8 +164,6 @@
         <h1 class="text-4xl font-bold tracking-tight mb-12">Auto Press Scoring</h1>
     </header>
 
-    <!-- Score Buttons -->
-    <div class="flex flex-col sm:flex-row gap-3 justify-center">
       {#if gameOver}
         <div class="text-center">
           <h2 class="text-2xl font-semibold text-gray-700 mb-3">Game Over</h2>
@@ -173,20 +171,23 @@
         </div>
       {:else}
         <h2 class="text-center text-2xl font-semibold text-gray-700 mb-3">Enter Score for Hole {currentHole}</h2>
-        <button  on:click={() => recordHole('A')} disabled={gameOver} 
-          class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 bg-blue-600 text-white">
-            Team A Wins Hole
-        </button>
-        <button  on:click={() => recordHole('B')} disabled={gameOver}
-        class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 bg-blue-600 text-white">
-            Team B Wins Hole
-        </button>
-        <button on:click={() => recordHole('Halved')} disabled={gameOver}
-          class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2 bg-gray-200 text-gray-900">
-            Hole Halved
-        </button>
+        <!-- Score Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+
+            <button  on:click={() => recordHole('A')} disabled={gameOver} 
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 bg-blue-600 text-white">
+                Team A Wins Hole {currentHole}
+            </button>
+            <button  on:click={() => recordHole('B')} disabled={gameOver}
+            class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 bg-blue-600 text-white">
+                Team B Wins Hole {currentHole}
+            </button>
+            <button on:click={() => recordHole('Halved')} disabled={gameOver}
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2 bg-gray-200 text-gray-900">
+                Hole  {currentHole} Halved
+            </button>
+          </div>
       {/if}
-    </div>
 
     <!-- History Section -->
     <div class="rounded-lg border bg-card text-card-foreground shadow-sm bg-white p-6 mt-8">
