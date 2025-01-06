@@ -1,5 +1,7 @@
 <script lang="ts">
-  // Define the possible teams
+	import '../app.css';
+
+// Define the possible teams
   type Team = 'A' | 'B';
 
   // One match = { value: number, side?: Team }
