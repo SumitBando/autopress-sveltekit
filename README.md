@@ -1,3 +1,6 @@
+Archiving, because realized that SvelteKit was not necessary for this single page app.
+Refactored into a Svelte 5 at at: https://github.com/SumitBando/autopress
+
 # Entirely machine generated
 - App started with chatgpt-o1preview
 - App refined with Copilot/Claude 3.5 Sonnet
